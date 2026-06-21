@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd1u2ch3l2l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
+size = Vector3(0.15, 0.635, 0.02)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u8vuu"]
+radius = 0.235
+height = 0.215
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+radius = 0.25
+height = 1.0
+
+[node name="player" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.982434, -0.18661, 0, 0.18661, 0.982434, 0, 0, 0, 1, -0.137757, 0.576261, 0)
+mesh = SubResource("BoxMesh_u8vuu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.831838, 0.555019, 0, -0.555019, 0.831838, 0, 0, 0, 1, 0.219517, 0.543212, 0)
+mesh = SubResource("BoxMesh_u8vuu")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00748718, 0.147569, -0.162772)
+mesh = SubResource("SphereMesh_u8vuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_3vyb7")
