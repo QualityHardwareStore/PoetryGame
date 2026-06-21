@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd1u2ch3l2l"]
+[gd_scene load_steps=7 format=3 uid="uid://dd1u2ch3l2l"]
+
+[ext_resource type="Shader" uid="uid://nd4dmqeplrl1" path="res://scripts/player.gdshader" id="1_3vyb7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2els"]
+render_priority = 0
+shader = ExtResource("1_3vyb7")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+material = SubResource("ShaderMaterial_g2els")
 radius = 0.25
 height = 1.0
 

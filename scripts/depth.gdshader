@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix,depth_draw_always,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+render_mode unshaded, depth_draw_always;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -7,8 +7,12 @@ void vertex() {
 }
 
 void fragment() {
-	//ALPHA = 0.0;
-	DEPTH = 1.0;
+	ALPHA = 0.0;
+	//DEPTH = FRAGCOORD.z;
+	//DEPTH = 1.0;
+	//ALBEDO = vec3(1.0, 0.0, 0.0);#
+	
+	
 }
 
 //void light() {
