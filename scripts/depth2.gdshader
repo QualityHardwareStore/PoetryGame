@@ -8,8 +8,8 @@ void vertex() {
 void fragment() {
 	//ALPHA = 0.0;
 	//DEPTH = FRAGCOORD.z;
-	//DEPTH = 1.0;
-	ALBEDO = vec3(1.0, 1.0, 1.0);
+	DEPTH = 1.0;
+	//ALBEDO = vec3(1.0, 1.0, 1.0);
 	
 	
 }

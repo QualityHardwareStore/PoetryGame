@@ -6,7 +6,7 @@ uniform sampler2D background: source_color;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
-	//POSITION = vec4(-VERTEX.xy, 1.0, 1.0);
+	POSITION = vec4(-VERTEX.xy, 1.0, 1.0);
 }
 
 void fragment() {
