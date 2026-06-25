@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6u4qtuxv5thi"]
+
+[ext_resource type="Script" uid="uid://3pi48rnum7s2" path="res://scripts/main.gd" id="1_slpul"]
+[ext_resource type="PackedScene" uid="uid://dd1u2ch3l2l" path="res://scenes/player.tscn" id="2_ber8d"]
+[ext_resource type="Script" uid="uid://dp84asxs2hre1" path="res://scripts/player.gd" id="3_v26uv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_sugp2"]
+sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
+
+[sub_resource type="Environment" id="Environment_jyhfs"]
+background_mode = 2
+sky = SubResource("Sky_sugp2")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_slpul")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jyhfs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0723823, -0.771078, 0.632613, 0.0727987, 0.63667, 0.767693, -0.994717, -0.00951395, 0.102217, 2.68332, 1.15654, 1.42188)
+shadow_enabled = true
+
+[node name="BG_Image" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="BG_Image"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="BG_Image/SubViewport"]
+
+[node name="BG_Geo" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(1000, 750)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport2" type="SubViewport" parent="BG_Geo"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1000, 750)
+render_target_update_mode = 4
+
+[node name="maincam" type="Camera3D" parent="BG_Geo/SubViewport2" groups=["cam"]]
+unique_name_in_owner = true
+transform = Transform3D(0.690981, -0.175373, 0.701277, -2.08616e-07, 0.970125, 0.242606, -0.722873, -0.167636, 0.670338, 4.85377, 2.32133, 4.64703)
+keep_aspect = 0
+fov = 25.0
+
+[node name="player" parent="BG_Geo/SubViewport2" instance=ExtResource("2_ber8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.388142, -0.0645857, -0.156668)
+script = ExtResource("3_v26uv")
+speed = 4
+acceleration = 50
+jump_velocity = 20
+gravity = 120
+
+[node name="background" type="Node3D" parent="BG_Geo/SubViewport2"]

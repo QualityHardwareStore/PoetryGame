@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://btkowre8umde"]
+
+[ext_resource type="Texture2D" uid="uid://edtlf6qjoy7o" path="res://icon.svg" id="1_4ngda"]
+[ext_resource type="Texture2D" uid="uid://c86c4nbyd23gb" path="res://assets/scene_1_v2.jpg" id="2_xhd4k"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1930, 602)
+texture = ExtResource("1_4ngda")
+offset = Vector2(-929, -213)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1000.0
+offset_bottom = 750.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1000, 750)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(363, 384)
+texture = ExtResource("2_xhd4k")

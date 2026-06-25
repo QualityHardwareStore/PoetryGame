@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dd1u2ch3l2l" path="res://scenes/player.tscn" id="1_kavpc"]
 [ext_resource type="Script" uid="uid://dp84asxs2hre1" path="res://scripts/player.gd" id="2_8p7uo"]
-[ext_resource type="Shader" uid="uid://jh2lsykb0xaj" path="res://scripts/bg_shader2.gdshader" id="2_kavpc"]
+[ext_resource type="Shader" uid="uid://bwmgse4il481m" path="res://scenes/bg_image_test.gdshader" id="2_wvppj"]
 [ext_resource type="Shader" uid="uid://ddo123ifivxhq" path="res://scripts/depth2.gdshader" id="3_wvppj"]
 [ext_resource type="Script" uid="uid://cqutqufoadl50" path="res://scripts/background_animtest.gd" id="4_8p7uo"]
 [ext_resource type="Texture2D" uid="uid://c86c4nbyd23gb" path="res://assets/scene_1_v2.jpg" id="5_wir25"]
@@ -18,7 +18,15 @@ sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
 background_mode = 2
 sky = SubResource("Sky_sugp2")
 tonemap_mode = 2
-glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+render_priority = 0
+shader = ExtResource("2_wvppj")
+shader_parameter/background = ExtResource("5_wir25")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tbgi4"]
+material = SubResource("ShaderMaterial_choun")
+size = Vector2(6, 4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 render_priority = 0
@@ -183,15 +191,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_kavpc"]
 size = Vector3(2.27393, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
-render_priority = 0
-shader = ExtResource("2_kavpc")
-shader_parameter/background = ExtResource("5_wir25")
-
-[sub_resource type="QuadMesh" id="QuadMesh_tbgi4"]
-material = SubResource("ShaderMaterial_choun")
-size = Vector2(2, 2)
-
 [node name="main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -206,7 +205,6 @@ offset_right = 1000.0
 offset_bottom = 750.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
-transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1000, 750)
 render_target_update_mode = 4
@@ -215,10 +213,16 @@ render_target_update_mode = 4
 texture = ExtResource("5_wir25")
 centered = false
 
+[node name="bg_shader_quad" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(0.690981, -0.175373, 0.701277, -2.08616e-07, 0.970125, 0.242606, -0.722873, -0.167636, 0.670338, -3.43082, -0.544708, -3.27205)
+visible = false
+mesh = SubResource("QuadMesh_tbgi4")
+skeleton = NodePath("../../../SubViewportContainer/SubViewport/maincam")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1000, 750)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1000.0
+offset_bottom = 750.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -227,7 +231,7 @@ size = Vector2i(1000, 750)
 render_target_update_mode = 4
 
 [node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_kavpc")]
-transform = Transform3D(1, 1.49012e-08, -2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.0796752, -0.064585, 1.11089)
+transform = Transform3D(1, 1.49012e-08, -2.98023e-08, -1.49012e-08, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.346397, -0.064585, -0.257672)
 script = ExtResource("2_8p7uo")
 speed = 4
 acceleration = 50
@@ -252,6 +256,7 @@ shape = SubResource("ConcavePolygonShape3D_85g3d")
 
 [node name="door" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/background/test1_v2"]
 transform = Transform3D(1.15952e-06, -0.351205, 0.936299, -1, -1.2358e-06, 7.7486e-07, 8.84947e-07, -0.936299, -0.351205, -1.12596, 0.61051, -0.570928)
+visible = false
 mesh = SubResource("ArrayMesh_dbt6h")
 skeleton = NodePath("")
 
@@ -289,6 +294,3 @@ unique_name_in_owner = true
 transform = Transform3D(0.690981, -0.175373, 0.701277, -2.08616e-07, 0.970125, 0.242606, -0.722873, -0.167636, 0.670338, 4.85377, 2.32133, 4.64703)
 keep_aspect = 0
 fov = 25.0
-
-[node name="bg_shader_quad" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/maincam"]
-mesh = SubResource("QuadMesh_tbgi4")

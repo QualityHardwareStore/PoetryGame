@@ -6,13 +6,13 @@ uniform sampler2D background: source_color;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
-	POSITION = vec4(-VERTEX.xy, 1.0, 1.0);
+	//POSITION = vec4(-VERTEX.xy, 1.0, 1.0);
 }
 
 void fragment() {
 	vec2 newUV = vec2(-UV.x,UV.y);
 	ALBEDO = texture(background, SCREEN_UV).rgb;
-	DEPTH = 1.0;
+	//DEPTH = 1.0;
 	
 	// Called for every pixel the material is visible on.
 }
