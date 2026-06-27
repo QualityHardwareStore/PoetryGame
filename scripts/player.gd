@@ -1,20 +1,23 @@
 extends CharacterBody3D
 
 @export_group("speeds")
-@export var speed := 10
-@export var acceleration := 150
+@export var speed := 4
+@export var acceleration := 50
 @export var rotation_speed := 7
-@export var jump_velocity := 5
+@export var jump_velocity := 20
 
-@export var gravity = 150
+@export var gravity = 120
 
 @onready var cam = %maincam
 @onready var camRotation:float = cam.rotation.y
+@onready var anim = %AnimationPlayer
 
 func _ready() -> void:
-	pass
+	Global.scenechange.connect(camera_movement_sync)
+	# create function / signal to update this whenever cam changes !
 
 func _physics_process(delta: float) -> void:
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 #		fix things in the way you can
@@ -31,5 +34,12 @@ func _physics_process(delta: float) -> void:
 	if direction !=Vector3.ZERO:
 		var target_angle = Basis.looking_at(direction)
 		basis = basis.slerp(target_angle, rotation_speed * delta)
+		anim.play("walk_001")
+	else:
+		anim.play("idle")
 	
 	move_and_slide()
+
+
+func camera_movement_sync():
+	camRotation = cam.rotation.y

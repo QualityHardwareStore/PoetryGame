@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=4 uid="uid://dophecu01kt5m"]
+[gd_scene load_steps=25 format=4 uid="uid://dophecu01kt5m"]
 
 [ext_resource type="PackedScene" uid="uid://dd1u2ch3l2l" path="res://scenes/player.tscn" id="1_kejo5"]
-[ext_resource type="Script" uid="uid://dp84asxs2hre1" path="res://scripts/player.gd" id="2_7tr0j"]
 [ext_resource type="Shader" uid="uid://ddo123ifivxhq" path="res://scripts/depth2.gdshader" id="3_xlafv"]
 [ext_resource type="Shader" uid="uid://viu5tn1165bj" path="res://scripts/bg_shader.gdshader" id="5_kxs5y"]
 [ext_resource type="Texture2D" uid="uid://c86c4nbyd23gb" path="res://assets/scene_1_v2.jpg" id="6_f31b2"]
@@ -213,11 +212,6 @@ render_target_update_mode = 4
 
 [node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_kejo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475805, -0.0645857, -0.19549)
-script = ExtResource("2_7tr0j")
-speed = 4
-acceleration = 50
-jump_velocity = 20
-gravity = 120
 
 [node name="background" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
