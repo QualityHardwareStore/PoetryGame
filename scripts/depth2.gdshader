@@ -10,8 +10,8 @@ void fragment() {
 	DEPTH = 1.0;
 	//DEPTH = FRAGCOORD.z;
 	//ALBEDO = vec3(0.0);
-	
-	
+
+
 }
 
 //void light() {
